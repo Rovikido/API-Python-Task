@@ -64,7 +64,7 @@ class MenuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Menu
         fields = '__all__'
-        
+
     def validate_menu_date(self, value):
         if value < date.today():
             raise serializers.ValidationError("Menu date cannot be in the past.")

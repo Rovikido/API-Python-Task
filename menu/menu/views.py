@@ -2,15 +2,14 @@ from datetime import date
 
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Count, F
 from django.contrib.auth.models import User
 
-from menu.models import Restaurant, Menu, Vote
+from menu.models import Restaurant, Menu
 from menu.serializers import RestaurantSerializer, MenuSerializer, UserSerializer, EmployeeProfileSerializer, VoteSerializer
 from .models import EmployeeProfile
 from .permissions import CanVotePermission, APIVersionPermission
@@ -108,6 +107,7 @@ def get_result_for_date(request):
     else:
         return Response({'message': f'No menus found for the specified day({day}).'}, status=404)
 
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated, APIVersionPermission])
 def add_menu(request):
@@ -195,7 +195,7 @@ class CombinedTokenObtainPairView(TokenObtainPairView):
 
         if user is None:
             user = EmployeeProfile.objects.filter(username=username).first().user
-        
+
         if user and user.password == password:
             refresh = RefreshToken.for_user(user)
             access_token = str(refresh.access_token)

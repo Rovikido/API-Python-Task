@@ -5,7 +5,6 @@ from .views import CombinedTokenObtainPairView
 from menu import views
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
 

@@ -17,6 +17,30 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
+
+from menu import views
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+
+    path('restaurants/get_all_restaurants', views.get_restaurant_list),
+    path('restaurants/add_restaurants', views.add_restaurant),
+
+    path('menu/get_all_menus', views.get_all_menus),
+    path('menu/get_menus_for_date', views.get_menus_for_date),
+    path('menu/get_result_for_date', views.get_result_for_date),
+    path('menu/add_restaurants', views.add_restaurant),
+    path('menu/add_menu', views.add_menu),
+
+    path('vote', views.vote)
 ]

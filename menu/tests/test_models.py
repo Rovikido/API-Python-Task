@@ -19,7 +19,7 @@ def test_create_restaurant():
 @pytest.mark.django_db
 def test_create_menu(menu_data):
     restaurant = Restaurant.objects.create(name="Test Restaurant")
-    menu = Menu.objects.create(name="Test Menu", restaurant=restaurant, menu_data=menu_data)
+    menu = Menu.objects.create(name="Test Menu", restaurant=restaurant, menu_data=menu_data, menu_date="2023-09-23")
     assert menu.name == "Test Menu"
     assert menu.restaurant == restaurant
 

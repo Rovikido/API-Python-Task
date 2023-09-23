@@ -9,8 +9,6 @@ class UserSerializer(serializers.ModelSerializer):
     """
     Serializer for the User model.
 
-    Serializes user data, including username, email, and other fields.
-
     Attributes:
         Meta (class): Configuration class for the serializer.
     """
@@ -22,8 +20,6 @@ class UserSerializer(serializers.ModelSerializer):
 class EmployeeProfileSerializer(serializers.ModelSerializer):
     """
     Serializer for the EmployeeProfile model.
-
-    Serializes employee profile data, including user, job title, and other fields.
 
     Attributes:
         Meta (class): Configuration class for the serializer.

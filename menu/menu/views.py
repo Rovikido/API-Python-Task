@@ -24,7 +24,7 @@ def get_restaurant_list(request):
         request: HTTP request object.
 
     Returns:
-        Response: JSON response containing a list of restaurants.
+        Response: JSON response with a list of all restaurants.
     """
     restaurants = Restaurant.objects.all()
     serializer = RestaurantSerializer(restaurants, many=True)
@@ -58,7 +58,7 @@ def get_all_menus(request):
         request: HTTP request object.
 
     Returns:
-        Response: JSON response containing a list of menus.
+        Response: JSON response with a list of all menus.
     """
     menus = Menu.objects.all()
     serializer = MenuSerializer(menus, many=True)
@@ -91,7 +91,7 @@ def get_result_for_date(request):
         request: HTTP request object.
 
     Returns:
-        Response: JSON response containing the most voted menu for the specified date.
+        Response: JSON response with the most voted menu for the specified date.
     """
     day = request.query_params.get('day', date.today())
     most_voted_menu = (
@@ -180,7 +180,7 @@ class CombinedTokenObtainPairView(TokenObtainPairView):
     """
     Custom token obtain view for obtaining access tokens.
 
-    This view combines user and employee profiles for authentication.
+    This view combines user and employee profiles for authentication, due to bugs with JWT
 
     Args:
         TokenObtainPairView: The base token obtain view.
